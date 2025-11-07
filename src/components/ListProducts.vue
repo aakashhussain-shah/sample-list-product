@@ -11,11 +11,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <pre class="gray">{{ data }}</pre>
+  <pre class="text-gray-500">{{ data }}</pre>
 </template>
 
 <style scoped>
-.gray {
-  color: gray;
-}
 </style>
