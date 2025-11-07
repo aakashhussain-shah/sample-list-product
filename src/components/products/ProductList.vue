@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
-import { downloadProductList } from './download-product-list.ts'
-import { filterProducts } from './filter-products.ts'
-import type { Product } from './types.ts'
+import { downloadProductList } from '@/services/ProductService.ts'
+import { filterProducts } from '@/composables/useProducts.ts'
+import type { Product } from '@/types/product.ts'
 import ProductToolbar from "./ProductToolbar.vue";
 
 const data = ref<Product[]>([])

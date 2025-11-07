@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import ListProducts from './components/ListProducts.vue'
+import ProductList from './components/products/ProductList.vue'
 </script>
 
 <template>
-  <ListProducts />
+  <ProductList />
 </template>
 
