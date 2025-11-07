@@ -3,16 +3,25 @@ import { onMounted, ref, computed } from 'vue'
 import { downloadProductList } from './download-product-list.ts'
 import { filterProducts } from './filter-products.ts'
 import type { Product } from './types.ts'
+import ProductToolbar from "./ProductToolbar.vue";
 
 const data = ref<Product[]>([])
 const isLoading = ref(false)
 const error = ref<string | null>(null)
+const sortOrder = ref<'asc' | 'desc'>('asc')
 
 const MAX_PRICE = 100
 
 const filteredProducts = computed(() => {
-  return filterProducts(data.value, MAX_PRICE)
+  const filtered = filterProducts(data.value, MAX_PRICE)
+  return [...filtered].sort((a, b) => {
+    return sortOrder.value === 'asc' ? a.price - b.price : b.price - a.price
+  })
 })
+
+const toggleSort = () => {
+  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+}
 
 const categoryColorMap: Record<string, string> = {
   'beauty': 'bg-pink-50 border-pink-200',
@@ -51,6 +60,11 @@ onMounted(async () => {
       <div class="mb-12">
         <h1 class="text-4xl font-bold text-gray-900 mb-2">Products</h1>
         <p class="text-gray-600">Showing {{filteredProducts.length}} products with price ≤ ${{ MAX_PRICE }}</p>
+      </div>
+
+      <!-- Toolbar -->
+      <div v-if="!isLoading && !error" class="mb-6">
+        <ProductToolbar :sortOrder="sortOrder" @toggleSort="toggleSort" />
       </div>
 
       <!-- Loading State -->
