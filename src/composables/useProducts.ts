@@ -34,6 +34,10 @@ export function useProducts() {
     sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
   }
 
+  const deleteProduct = (productId: number) => {
+    data.value = data.value.filter(product => product.id !== productId)
+  }
+
   const loadProducts = async () => {
     isLoading.value = true
     try {
@@ -58,5 +62,6 @@ export function useProducts() {
     sortOrder,
     filteredProducts,
     toggleSort,
+    deleteProduct
   }
 }

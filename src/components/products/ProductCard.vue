@@ -10,8 +10,17 @@ defineProps<{
 <template>
   <div class="p-3 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
     <div
-        :class="['border-2 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 h-full', categoryColor]"
+        :class="['relative border-2 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 h-full', categoryColor]"
     >
+      <!-- Delete Button -->
+      <button
+          @click="$emit('delete', product.id)"
+          class="absolute right-4 top-4 z-10 leading-2.5 text-gray-400 hover:text-red-600 rounded transition-colors duration-200 cursor-pointer"
+          title="Delete product"
+      >
+        x
+      </button>
+
       <!-- Product Image -->
       <div class="aspect-square bg-gray-200 overflow-hidden">
         <img
