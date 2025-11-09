@@ -5,7 +5,7 @@ import ProductCard from './ProductCard.vue'
 import { getCategoryColor } from '@/utils/categoryColors'
 import {MAX_PRICE} from "@/constants.ts";
 
-const { filteredProducts, isLoading, error, sortOrder, toggleSort, deleteProduct } = useProducts()
+const { filteredProducts, isLoading, error, sortOrder, toggleSort, handleDeleteProduct } = useProducts()
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const { filteredProducts, isLoading, error, sortOrder, toggleSort, deleteProduct
             :key="product.id"
             :product="product"
             :category-color="getCategoryColor(product.category)"
-            @delete="deleteProduct"
+            @delete="handleDeleteProduct"
         />
       </div>
 

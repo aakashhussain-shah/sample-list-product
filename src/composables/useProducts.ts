@@ -1,7 +1,7 @@
 import { ref, computed, onMounted } from 'vue'
 import type { Product } from '@/types/product'
 import {API_BASE_URL, MAX_PRICE, PRODUCTS_LIMIT} from "@/constants.ts";
-import { filterProducts } from "@/utils/productFilters.ts";
+import {deleteProduct, filterProducts, sortByPrice} from "@/utils/productUtils.ts";
 
 export function useProducts() {
   const data = ref<Product[]>([])
@@ -22,17 +22,15 @@ export function useProducts() {
 
   const filteredProducts = computed(() => {
     const filtered = filterProducts(data.value, MAX_PRICE)
-    return [...filtered].sort((a, b) => {
-      return sortOrder.value === 'asc' ? a.price - b.price : b.price - a.price
-    })
+    return sortByPrice(filtered, sortOrder.value)
   })
+
+  const handleDeleteProduct = (productId: number) => {
+    data.value = deleteProduct(data.value, productId)
+  }
 
   const toggleSort = () => {
     sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
-  }
-
-  const deleteProduct = (productId: number) => {
-    data.value = data.value.filter(product => product.id !== productId)
   }
 
   const loadProducts = async () => {
@@ -59,6 +57,6 @@ export function useProducts() {
     sortOrder,
     filteredProducts,
     toggleSort,
-    deleteProduct
+    handleDeleteProduct,
   }
 }
