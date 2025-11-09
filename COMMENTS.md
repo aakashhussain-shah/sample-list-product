@@ -5,10 +5,10 @@
 - Delete is client-side only
 
 ## Architecture Decisions
-- Extracted business logic into composables for reusability
-- Created utilities for filtering, sorting, deleting and color mapping
-- Constants centralized for maintainability
-- Added Tailwind for professional styling without extra complexity
+- Filtering, sorting, and deleting logic in utility functions
+- Data fetching and state management in composables
+- Constants in one place for easy changes
+- Tailwind CSS for styling
 
 ## Testing
 - Mock data reused across tests
