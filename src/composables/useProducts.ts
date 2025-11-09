@@ -1,6 +1,7 @@
 import { ref, computed, onMounted } from 'vue'
 import type { Product } from '@/types/product'
 import {API_BASE_URL, MAX_PRICE, PRODUCTS_LIMIT} from "@/constants.ts";
+import { filterProducts } from "@/utils/productFilters.ts";
 
 export function useProducts() {
   const data = ref<Product[]>([])
@@ -17,10 +18,6 @@ export function useProducts() {
       console.error(err)
       throw new Error('Failed to load products')
     }
-  }
-
-  const filterProducts = (products: Product[], maxPrice: number): Product[] => {
-    return products.filter((product) => product.price <= maxPrice)
   }
 
   const filteredProducts = computed(() => {
