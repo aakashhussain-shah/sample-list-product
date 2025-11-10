@@ -1,4 +1,7 @@
-const categoryColorMap: Record<string, string> = {
+import {productCategory} from "@/types/product.ts";
+import {DEFAULT_CATEGORY_COLOR} from "@/constants.ts";
+
+const categoryColorMap: Record<productCategory, string> = {
   'beauty': 'bg-pink-50 border-pink-200',
   'fragrances': 'bg-blue-50 border-blue-200',
   'groceries': 'bg-green-50 border-green-200',
@@ -10,6 +13,6 @@ const categoryColorMap: Record<string, string> = {
   'mobile-accessories': 'bg-indigo-50 border-indigo-200',
 }
 
-export const getCategoryColor = (category: string): string => {
-  return categoryColorMap[category.toLowerCase()] || 'bg-gray-50 border-gray-200'
+export const getCategoryColor = (category: productCategory): string => {
+  return categoryColorMap[category] || DEFAULT_CATEGORY_COLOR
 }
