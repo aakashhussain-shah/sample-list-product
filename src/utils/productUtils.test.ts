@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {deleteProduct, filterProducts, sortByPrice} from "@/utils/productUtils.ts";
-import { mockProducts } from "@mocks/products.mock.ts"
+import { mockProducts } from "@tests/mocks/products.mock.ts"
 
 describe('filterProducts', () => {
   it('returns only products below 100', () => {

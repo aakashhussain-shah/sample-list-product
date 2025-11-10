@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@mocks': path.resolve(__dirname, './src/tests/mocks'),
+      '@tests': path.resolve(__dirname, './src/tests'),
     },
   },
 })
